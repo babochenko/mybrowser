@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 350px;
+      min-height: 200px;
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #007cff;
+    }
+    
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #333;
+      font-weight: 600;
+    }
+    
+    .header p {
+      margin: 5px 0 0 0;
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .btn {
+      padding: 12px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .btn-primary {
+      background: #007cff;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #0056b3;
+      transform: translateY(-1px);
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+    
+    .btn-secondary:hover {
+      background: #f5f5f5;
+      border-color: #ccc;
+    }
+    
+    .btn-icon {
+      font-size: 16px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .info-section {
+      background: white;
+      border-radius: 6px;
+      padding: 15px;
+      border: 1px solid #e1e5e9;
+      margin-top: 15px;
+    }
+    
+    .info-section h3 {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      color: #333;
+    }
+    
+    .info-section p {
+      margin: 0;
+      font-size: 13px;
+      color: #666;
+      line-height: 1.4;
+    }
+    
+    .hotkey {
+      background: #f1f3f4;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      background: #e8f5e8;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      font-size: 13px;
+      color: #2e7d32;
+    }
+    
+    .status.error {
+      background: #ffebee;
+      color: #c62828;
+    }
+    
+    .status-icon {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>MyBrowser</h1>
+    <p>Dynamic Page Modifier</p>
+  </div>
+
+  <div id="status" class="status" style="display: none;">
+    <span class="status-icon">✓</span>
+    <span id="status-text">Ready to use</span>
+  </div>
+
+  <div class="action-buttons">
+    <button id="open-popover" class="btn btn-primary">
+      <span class="btn-icon">🚀</span>
+      <span>Open on Current Tab</span>
+    </button>
+    
+    <button id="manage-settings" class="btn btn-secondary">
+      <span class="btn-icon">⚙️</span>
+      <span>Manage API Key</span>
+    </button>
+  </div>
+
+  <div class="info-section">
+    <h3>Quick Start</h3>
+    <p>
+      Click "Open on Current Tab" or use the hotkey: 
+      <span class="hotkey">Ctrl/Cmd + K</span>
+    </p>
+  </div>
+
+  <div class="info-section">
+    <h3>Current Website</h3>
+    <p id="current-website">Loading...</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
