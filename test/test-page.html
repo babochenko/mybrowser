@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBrowser Extension Test Page</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            border-bottom: 2px solid #007cff;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .ad-banner {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            animation: blink 2s infinite;
+        }
+        
+        .sidebar-ad {
+            background: #feca57;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 2px solid #ff9ff3;
+            text-align: center;
+        }
+        
+        .popup-ad {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ff3838;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            z-index: 9999;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+        }
+        
+        .content-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .social-share {
+            background: #3742fa;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .newsletter-signup {
+            background: #2ed573;
+            color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2f3542;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            z-index: 1000;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.7; }
+        }
+        
+        .test-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
+        
+        .test-controls button {
+            display: block;
+            margin: 5px 0;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            background: #007cff;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .test-controls button:hover {
+            background: #0056b3;
+        }
+        
+        .hidden-element {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-controls">
+        <h4>Test Controls</h4>
+        <button onclick="showPopupAd()">Show Popup Ad</button>
+        <button onclick="addMoreAds()">Add More Ads</button>
+        <button onclick="showInstructions()">Show Instructions</button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>MyBrowser Extension Test Page</h1>
+            <p>Use this page to test element removal and manipulation functionality</p>
+        </div>
+
+        <div class="ad-banner" id="top-banner">
+            🎯 TOP BANNER ADVERTISEMENT - Try removing me with Ctrl+K (or Cmd+K)!
+        </div>
+
+        <div class="content-section">
+            <h2>Main Content</h2>
+            <p>This is the main content of the page that should remain after ads are removed.</p>
+            
+            <div class="sidebar-ad" id="sidebar-ad-1">
+                📢 Sidebar Advertisement #1 - Remove me too!
+            </div>
+            
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            
+            <div class="social-share" id="social-buttons">
+                📱 Share on Social Media (try hiding this)
+            </div>
+            
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+
+        <div class="ad-banner" id="middle-banner">
+            💥 MIDDLE BANNER AD - Another target for removal!
+        </div>
+
+        <div class="content-section">
+            <h2>More Content</h2>
+            <p>Additional content to demonstrate the extension works on different page sections.</p>
+            
+            <div class="newsletter-signup" id="newsletter">
+                📧 Newsletter Signup - Try removing this!
+            </div>
+            
+            <div class="sidebar-ad" id="sidebar-ad-2">
+                🎪 Sidebar Advertisement #2 - Remove me as well!
+            </div>
+        </div>
+
+        <div class="ad-banner" id="bottom-banner">
+            🔥 BOTTOM BANNER ADVERTISEMENT - Last chance to remove me!
+        </div>
+    </div>
+
+    <div class="popup-ad" id="popup-ad">
+        <h3>🚨 ANNOYING POPUP AD!</h3>
+        <p>This is a popup advertisement that you can remove with the extension.</p>
+        <button onclick="hidePopupAd()" style="background: white; color: #ff3838; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Close</button>
+    </div>
+
+    <div class="cookie-banner" id="cookie-banner">
+        🍪 This website uses cookies. We use cookies to improve your experience. Try removing this banner!
+        <button onclick="hideCookieBanner()" style="margin-left: 15px; background: #007cff; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Accept</button>
+    </div>
+
+    <script>
+        // Test page functionality
+        function showPopupAd() {
+            document.getElementById('popup-ad').style.display = 'block';
+        }
+
+        function hidePopupAd() {
+            document.getElementById('popup-ad').style.display = 'none';
+        }
+
+        function hideCookieBanner() {
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        function addMoreAds() {
+            const container = document.querySelector('.container');
+            const newAd = document.createElement('div');
+            newAd.className = 'ad-banner';
+            newAd.id = 'dynamic-ad-' + Date.now();
+            newAd.innerHTML = '🆕 DYNAMIC AD - Just added, try removing me!';
+            container.appendChild(newAd);
+        }
+
+        function showInstructions() {
+            alert(`
+MyBrowser Extension Test Instructions:
+
+1. Press Ctrl+K (Windows/Linux) or Cmd+K (Mac) to open the extension popover
+
+2. Try these test queries:
+   • "remove all advertisements"
+   • "hide the banner ads" 
+   • "remove the sidebar ads"
+   • "hide the social share buttons"
+   • "remove the newsletter signup"
+   • "hide the cookie banner"
+   • "remove the popup ad"
+
+3. The extension will generate JavaScript code to manipulate the page elements
+
+4. Test different combinations and see how well it handles various page structures
+
+5. Check the browser console for execution logs
+
+Note: You'll need an OpenAI API key to use the LLM features, but the tests mock these responses.
+            `);
+        }
+
+        // Auto-show popup after 3 seconds for testing
+        setTimeout(() => {
+            showPopupAd();
+        }, 3000);
+
+        console.log('🧪 MyBrowser Test Page Loaded');
+        console.log('Available test elements:', {
+            banners: document.querySelectorAll('.ad-banner').length,
+            sidebarAds: document.querySelectorAll('.sidebar-ad').length,
+            socialShare: document.querySelectorAll('.social-share').length,
+            newsletter: document.querySelectorAll('.newsletter-signup').length,
+            cookieBanner: document.querySelectorAll('.cookie-banner').length
+        });
+    </script>
+</body>
+</html>

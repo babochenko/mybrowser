@@ -1,0 +1,33 @@
+{
+  "name": "mybrowser-extension",
+  "version": "1.0.0",
+  "description": "Power user tool for dynamic page modification with LLM-generated JavaScript snippets",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:headless": "node test/run-headless-tests.js"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "puppeteer": "^21.5.2",
+    "jest-puppeteer": "^9.0.2",
+    "@babel/core": "^7.23.6",
+    "@babel/preset-env": "^7.23.6"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/test/setup.js"],
+    "testMatch": [
+      "<rootDir>/test/**/*.test.js"
+    ],
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "*.js",
+      "!test/**",
+      "!coverage/**",
+      "!jest.config.js"
+    ]
+  }
+}
